@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import {Image, View, Text,ListView,  FlatList, StyleSheet, ActivityIndicator} from 'react-native';
+import {Image, View, Text,ListView,
+    FlatList, StyleSheet, ActivityIndicator,
+    TouchableWithoutFeedback} from 'react-native';
 
 
 class ICNDB extends Component {
@@ -19,8 +21,8 @@ class ICNDB extends Component {
         // then this
         .then((response) => response.json())
         .then(resJSON => {
-          let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
           this.setState({
+            //dataSource: this.state.
             isLoading: false,
             jokes: this.state.jokes.concat(resJSON.value.joke),
           });
@@ -36,10 +38,22 @@ class ICNDB extends Component {
     if(this.state.isLoading){
        return (<Text style = {{padding: 20}}> Loading.... </Text>);
      }
-
+/*
     return (
       <View style={{flex: 1}}>
-      <Text style = {styles.style1}> {this.state.jokes}</Text>
+        <TouchableWithoutFeedback onPress={this.componentDidMount()}>
+          <Text style = {styles.style1}>
+            {this.state.jokes}
+          </Text>
+        </TouchableWithoutFeedback>
+      </View>
+    );
+    */
+    return (
+      <View style={{flex: 1}}>
+          <Text style = {styles.style1}>
+            {this.state.jokes}
+          </Text>
       </View>
     );
   }
