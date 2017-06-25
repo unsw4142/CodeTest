@@ -3,11 +3,11 @@ import {Image, View, Text,ListView,
     FlatList, StyleSheet, ActivityIndicator,
     TouchableWithoutFeedback} from 'react-native';
 
-
 class ICNDB extends Component {
   constructor(props){
     super(props);
     this.state = {
+      hi: props.me,
       isLoading: true,
       jokes: [],
     };
@@ -31,9 +31,19 @@ class ICNDB extends Component {
           console.error(error);
         });
   }
+  componentWillUpdate(nextProps, nextState) {
+  if (nextState.open == true && this.state.open == false) {
+    this.props.onWillOpen();
+  }
+  }
 
+  Iterator(iter){
+    return(iter + '. ');
+    // Maybe
+    this.setState({jokes:''});
+  }
   render() {
-
+    const iter = [1,2,3,4,5];
     // First time it renders, no data defined
     if(this.state.isLoading){
        return (<Text style = {{padding: 20}}> Loading.... </Text>);
@@ -47,10 +57,25 @@ class ICNDB extends Component {
           </Text>
         </TouchableWithoutFeedback>
       </View>
-    );
+    ); <Iterator iter = {iter[0]} />
     */
     return (
       <View style={{flex: 1}}>
+
+          <Text style = {styles.style1}>
+            {this.Iterator(iter[0])}
+            {this.state.jokes}
+          </Text>
+          <Text style = {styles.style1} me = "hhhi">
+            {this.Iterator(iter[0])}
+            {this.state.jokes}
+          </Text>
+          <Text style = {styles.style1}>
+            {this.state.jokes}
+          </Text>
+          <Text style = {styles.style1}>
+            {this.state.jokes}
+          </Text>
           <Text style = {styles.style1}>
             {this.state.jokes}
           </Text>
