@@ -12,7 +12,8 @@ import {
   View
 } from 'react-native';
 import MainApp from './src/MainApp'
-
+import MainApp2 from './src/tempMain'
+/**
 export default class Test extends Component {
   render() {
     return (
@@ -50,5 +51,5 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
-
+*/
 AppRegistry.registerComponent('Test', () => MainApp);
