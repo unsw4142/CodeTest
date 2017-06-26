@@ -8,7 +8,7 @@ class useaxios extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: 'https://api.icndb.com/jokes/random.json', jokes: []};
+      url: this.props.url, jokes: []};
   }
 
   newUrl(n){
@@ -33,6 +33,23 @@ class useaxios extends Component {
         });
   }
 
+  reloadApi(){
+    return fetch(this.state.url)
+     // then this
+     .then((response) => response.json())
+     .then(resJSON => {
+       this.setState({
+         //dataSource: this.state.
+
+         isLoading: false,
+         jokes: this.state.jokes.concat(resJSON.value.joke),
+       });
+     })
+     .catch((error) => {
+       console.error(error);
+     });
+  }
+
   render() {
     const iter = [1,2,3,4,5];
     // First time it renders, no data defined
@@ -42,6 +59,12 @@ class useaxios extends Component {
 
      return (
        <View style={{flex: 1}}>
+
+           <Text style = {styles.style1}>
+             {this.state.jokes}
+           </Text>
+
+           {this.reloadApi}
 
            <Text style = {styles.style1}>
              {this.state.jokes}

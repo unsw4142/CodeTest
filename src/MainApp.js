@@ -8,7 +8,8 @@ class MainApp extends Component {
   render(){
     return(
       <View className = 'MainApp'>
-       <Useaxios />
+       <Useaxios style = {{color: 'black'}} url = {'https://api.icndb.com/jokes/random.json'} />
+       <Useaxios  url = {'https://api.icndb.com/jokes/random.json'} />
       </View>
     );
   }
